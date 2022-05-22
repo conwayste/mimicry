@@ -265,7 +265,7 @@ fn generate_mimic_enum(
     }
 
     parts.push(quote! {
-        #[derive(Display, Default)]
+        #[derive(Default)]
         pub enum #mimic_enum_name_ident {
             #[default]
             #(#variant_mimic_stream)*

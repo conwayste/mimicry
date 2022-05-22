@@ -9,5 +9,3 @@ edition = "2021"
 [dependencies]
 mimicry-derive = { path = "mimicry-derive" }
 mimicry-arg = { path = "mimicry-arg" }
-strum = "0.23"
-strum_macros = "0.23"

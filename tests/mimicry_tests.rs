@@ -3,7 +3,6 @@ extern crate mimicry;
 pub use mimicry::*;
 
 use std::{fmt::Debug, str::FromStr, vec};
-use strum_macros::Display;
 
 #[allow(unused)]
 #[derive(Debug, Mimic)]
