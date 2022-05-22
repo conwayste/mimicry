@@ -71,7 +71,7 @@ where
             .collect::<Result<Vec<T>, <T as FromStr>::Err>>()
         {
             Ok(p) => p,
-            Err(_) => return Err("Failed to parse MimicList<T>"),
+            Err(_) => return Err("Failed to parse as MimicList<T>"),
         };
 
         Ok(MimicList::<T>::new(parsed))

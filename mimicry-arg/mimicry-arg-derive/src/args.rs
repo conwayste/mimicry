@@ -171,7 +171,7 @@ fn generate_recursive_tryfrom_parsing_calls(
             .collect::<Vec<String>>();
         let generics_csv = generics_list.join(",");
         let error_msg = format!(
-            "Failed to parse `{}` in {}<{}>",
+            "Failed to parse as `{}` in {}<{}>",
             generics_list[list_index], struct_name, generics_csv
         );
 
