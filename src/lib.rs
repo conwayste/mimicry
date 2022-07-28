@@ -16,7 +16,7 @@ pub struct MimicMetadata {
     pub fields: Vec<MimicFieldData>, // variant fields
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Default)]
 pub struct MimicList<T>
 where
     T: FromStr,
@@ -28,7 +28,7 @@ impl<T> MimicList<T>
 where
     T: FromStr,
 {
-    fn new(t: Vec<T>) -> Self {
+    pub fn new(t: Vec<T>) -> Self {
         MimicList::<T> { output_list: t }
     }
 }
