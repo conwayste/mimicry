@@ -16,6 +16,11 @@ enum RequestAction {
     KeepAlive {
         latest_response_ack: u64,
     },
+    DropPattern {
+        x:       i32,
+        y:       i32,
+        pattern: String,
+    },
 }
 
 #[test]
@@ -43,6 +48,22 @@ fn make_requestaction_keepalive() {
     if let MimicRequestAction::RequestActionKeepAlive { inner } = raka_mimic {
         let _ = RequestAction::KeepAlive {
             latest_response_ack: inner.instance.f0,
+        };
+    };
+}
+
+#[test]
+fn make_requestaction_droppattern() {
+    let responses = vec!["625".to_owned(), "725".to_owned(), "Denth".to_owned()];
+    let raka_mimic = MimicRequestAction::RequestActionDropPattern {
+        inner: RequestActionDropPattern::try_from(responses).expect("Failed to parse"),
+    };
+
+    if let MimicRequestAction::RequestActionDropPattern { inner } = raka_mimic {
+        let _ = RequestAction::DropPattern {
+            x: inner.instance.f0,
+            y: inner.instance.f1,
+            pattern: inner.instance.f2,
         };
     };
 }

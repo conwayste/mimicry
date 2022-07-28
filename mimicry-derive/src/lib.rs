@@ -180,30 +180,6 @@ fn generate_mimic_struct_for_each_variant(
             }
             };
             parts.push(part);
-        } else if field_count == 1 {
-            let only_type = &field_type_list_ident[0];
-            let part = quote! {
-            pub struct #mimic_name_ident {
-                pub meta: MimicMetadata,
-                pub instance: #mimicry_arg_ident<#only_type>,
-            }
-            impl Default for #mimic_name_ident {
-                fn default() -> Self {
-                    #mimic_name_ident {
-                        meta: MimicMetadata {
-                            name: #input_variant_name,
-                            fields: vec![
-                                #(#mimic_fields, )*
-                            ],
-                        },
-                        instance: #mimicry_arg_ident::<#only_type> {
-                            f0: #only_type::from_str("0").unwrap()
-                        },
-                    }
-                }
-            }
-            };
-            parts.push(part);
         } else {
             let part = quote! {
             pub struct #mimic_name_ident {
@@ -220,7 +196,7 @@ fn generate_mimic_struct_for_each_variant(
                                 ],
                             },
                             instance: #mimicry_arg_ident::< #(#field_type_list_ident),* > {
-                                #(#item_list: "".into()),*
+                                #(#item_list: #field_type_list_ident::from_str("0").unwrap()),*
                             }
                         }
                     }
